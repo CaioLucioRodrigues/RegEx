@@ -1,0 +1,54 @@
+Aula 1 - Primeiro problema: Definir um pattern para um CFP:
+
+Target:
+João Fulano,123.456.789-00,21 de Maio de 1993,(21) 3079-9987,Rua do Ouvidor,50,20040-030,Rio de Janeiro
+
+Pattern:
+\d -> Indica que o próximo carácter será um número
+{} -> Dentro das chaves, indicamos a quantidade de caracteres teremos
+\d{3} -> Aqui ele irá procurar sequencias de 3 números
+. -> Ponto significa qualquer caractere. Como no CPF queremos o carácter ".", precisamos usar assim:
+\.
+Sendo assim, temos o começo do Patter: \d{3}\. -> Ele vai procurar 3 caracteres seguidos de um ponto.
+
+Pattern completo do CPF: \d{3}\.\d{3}\.\d{3}\-\d{2}
+
+
+Aula 2 - Definir um pattern para um IP:
+
+Targets válidos:
+126.1.112.34
+128.126.12.244
+128.126.12.244
+
+Pattern
+\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}
+
+\d{1,3} -> Indica que temos de 1 a 3 números a diante
+\. -> Carácter literal "ponto"`
+
+Aula 3 - CPF`s com diferentes formatações
+
+Targets válidos:
+123.456.789-00
+123456789-00
+12345678900
+
+Pattern
+\d{3}\.?\d{3}\.?\d{3}\-?\d{2}
+
+? -> Após o \., usamos o "?" para indicar que o ponto é opcional
+
+Target válidos:
+123-456-789.00
+
+Pattern
+\d{3}[.-]?\d{3}[.-]?\d{3}[.-]?\d{2}
+
+[] -> Dentro dos colchetes, indicamos uma classe aceita pelo próximo(s) caractere(s).
+Exemplos: 
+[.-] -> Aceita "." ou "-"
+[.-]? -> Aceita  "." ou "-", porém é opcional
+[.-]{3} -> Aceita  "." ou "-" pelos próximos 3 caracteres
+[0123456789] -> Aceita a de 0 a 9
+[0-9] -> Aceita a de 0 a 9
