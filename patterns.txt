@@ -52,3 +52,49 @@ Exemplos:
 [.-]{3} -> Aceita  "." ou "-" pelos próximos 3 caracteres
 [0123456789] -> Aceita a de 0 a 9
 [0-9] -> Aceita a de 0 a 9
+
+
+Target válidos:
+21 de Maio de 1993
+01 de Abril de 2001
+8 de Junho de 2020
+
+Patter
+[0-3]?\d\s+de\s+[A-Z][a-zç]{1,8}\s+de\s+[12]\d{3}
+
+[0-3]? -> Aceita um numeral de 0 a 3, opcional (?)
+          A data sempre será dois caracteres, sendo que o primeiro nunca será maior que 4 ( máximo de dias = 31 )
+          Além disso, o usuário pode usar o 0 na frente ou até ignorar, quando o dia menor que 10
+\d -> Aceita um numeral, segundo carácter do dia
+\s -> Classe pré definida com caracteres de espaço em branco ( espaço, tab, newline, return... )
++ -> Quantificador, indica que pode ser 1 ou mais caracteres ( outra opção seria {1,} )
+     Ou seja, \s+ significa que o regex aceita qualquer quantidade de espaços em branco
+de -> Literal, caracteres "d" e "e"
+[A-Z] -> Aceita um carácter definido na classe em si, uma letra de a a z em maiúsculo
+[a-zç]{1,8} -> Aceita de 1 a 8 caracteres ( não tem nome de mês maior do que isso ) dentro da classe de "a" a "z" minúsculo e o "ç"
+
+Quantificadores:
+? - zero ou uma vez.
+* - zero ou mais vezes.
++ - uma ou mais vezes.
+{n} - exatamente n vezes.
+{n,} - no mínimo n vezes.
+{n,m} - no mínimo n vezes, no máximo m vezes.
+
+Target válido
+aaa
+
+Patter
+\baaa\b
+
+\b -> Âncora, define que o resultado (aaa) não pode ter nenhuma wordchar antes ou depois, basicamente uma busca literal
+
+Target válido
+file:///Users/nico/Downloads/regex/index.html
+
+Patter
+^file.+html$
+
+^file -> Âncora (^), aceita somente o que começa com a palavra literal file
+.+ -> Aceita qualquer carácter (".") uma ou mais vezes (quantificador +)
+html$ -> Âncora ($), aceita somente o que termina com a palavra literal html
